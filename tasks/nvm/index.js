@@ -16,28 +16,29 @@ module.exports = function (gruntOrShipit) {
   require('./cmd')(gruntOrShipit);
 
   utils.registerTask(gruntOrShipit, 'nvm:run', [
-    'npm:init',
+    'nvm:init',
     'nvm:cmd'
   ]);
 
   shipit.on('deploy', function () {
 
-    utils.runTask(gruntOrShipit, 'nvm:init')
+    shipit.on('npm_inited', function () {
 
-    shipit.on('nvm_inited', function () {
+      utils.runTask(gruntOrShipit, 'nvm:init')
 
-      shipit.on('npm_preinstall', function () {
-        utils.runTask(gruntOrShipit, 'nvm:alias-default');
+      shipit.on('nvm_inited', function () {
+
+        shipit.on('npm_preinstall', function () {
+          utils.runTask(gruntOrShipit, 'nvm:alias-default');
+        });
+
+        shipit.on('npm_installed', function () {
+          utils.runTask(gruntOrShipit, 'nvm:unalias-default');
+        });
+
       });
-
-      shipit.on('npm_installed', function () {
-        utils.runTask(gruntOrShipit, 'nvm:unalias-default');
-      });
-
     });
 
   });
-
-
 
 };

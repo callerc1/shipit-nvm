@@ -15,21 +15,14 @@ module.exports = function (gruntOrShipit) {
     var shipit = utils.getShipit(gruntOrShipit);
 
     function cmd(remote) {
-
-      if(!remote) {
-        throw new Error(
-          shipit.log(
-            chalk.red('shipit.config.nvm.remote is', remote),
-            chalk.gray('try running nvm:init before nvm:cmd')
-          )
-        );
-      }
+      shipit.log("Remote = "+remote);
 
       var method = remote ? 'remote' : 'local';
       var cdPath = remote ? shipit.releasePath || shipit.currentPath : shipit.config.workspace;
 
+      shipit.log(cdPath);
       if(!cdPath) {
-        var msg = remote ? 'Please specify a deploy to path (shipit.config.deployTo)' : 'Please specify a workspace (shipit.config.workspace)';
+        var msg = remote ? 'Please specify a deploy to path (shipit.config.deployTo).' : 'Please specify a workspace (shipit.config.workspace)';
         throw new Error(
           shipit.log(chalk.red(msg))
         );
@@ -53,12 +46,22 @@ module.exports = function (gruntOrShipit) {
 
     shipit.log('Running - nvm ' + argv.cmd);
 
-    return cmd(shipit.config.nvm.remote)
-    .then(function () {
-      shipit.log(chalk.green('Complete - nvm ' + argv.cmd));
-    })
-    .catch(function (e) {
-      shipit.log(e);
-    });
+    if(shipit.nvm_inited) {
+
+      return cmd(shipit.config.nvm.remote)
+      .then(function () {
+        shipit.log(chalk.green('Complete - nvm ' + argv.cmd));
+      })
+      .catch(function (e) {
+        shipit.log(chalk.red(e));
+      });
+
+    }else {
+      throw new Error(
+        shipit.log(
+          chalk.gray('try running nvm:init before nvm:cmd')
+        )
+      );
+    }
   }
 };

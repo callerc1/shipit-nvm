@@ -15,15 +15,6 @@ module.exports = function (gruntOrShipit) {
 
     function unaliasDefault(remote) {
 
-      if(!remote) {
-        throw new Error(
-          shipit.log(
-            chalk.red('shipit.config.nvm.remote is', remote),
-            chalk.gray('try running nvm:init before nvm:unalias-default')
-          )
-        );
-      }
-
       var method = remote ? 'remote' : 'local';
 
       return shipit[method](
@@ -31,13 +22,25 @@ module.exports = function (gruntOrShipit) {
       );
 
     }
+
     shipit.log('running nvm unalias default');
-    return unaliasDefault(shipit.config.nvm.remote)
-    .then(function () {
-      shipit.log(chalk.green('nvm unalias default complete'));
-    })
-    .catch(function (e) {
-      shipit.log(e);
-    });
+
+    if(shipit.nvm_inited) {
+
+      return unaliasDefault(shipit.config.nvm.remote)
+      .then(function () {
+        shipit.log(chalk.green('nvm unalias default complete'));
+      })
+      .catch(function (e) {
+        shipit.log(chalk.red(e));
+      });
+
+    }else {
+      throw new Error(
+        shipit.log(
+          chalk.gray('try running nvm:init before nvm:unalias-default')
+        )
+      );
+    }
   }
 };

@@ -2,8 +2,6 @@ var utils = require('shipit-utils');
 
 /**
  * Register NVM tasks.
- * - nvm
- * - nvm:use
  * - nvm:run
  */
 

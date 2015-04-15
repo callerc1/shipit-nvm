@@ -13,7 +13,6 @@ module.exports = function (gruntOrShipit) {
   require('./init')(gruntOrShipit);
   require('./alias-default')(gruntOrShipit);
   require('./unalias-default')(gruntOrShipit);
-  require('./use')(gruntOrShipit);
   require('./cmd')(gruntOrShipit);
 
   utils.registerTask(gruntOrShipit, 'nvm:run', [

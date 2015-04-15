@@ -23,8 +23,6 @@ module.exports = function (gruntOrShipit) {
 
     }
 
-    shipit.log('running nvm unalias default');
-
     if(shipit.nvm_inited) {
 
       return unaliasDefault(shipit.config.nvm.remote)

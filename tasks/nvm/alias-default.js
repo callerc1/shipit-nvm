@@ -29,8 +29,7 @@ module.exports = function (gruntOrShipit) {
          sprintf('cat %s.nvmrc', nvmrcPath)
       )
       .then(function (res) {
-        //shipit.log(res);
-        //shipit.log(res[0].stdout);
+
         v = remote ? res[0].stdout : res.stdout;
 
         return shipit[method](
@@ -39,8 +38,6 @@ module.exports = function (gruntOrShipit) {
       });
 
     }
-
-    shipit.log('running nvm alias default');
 
     if(shipit.nvm_inited) {
 

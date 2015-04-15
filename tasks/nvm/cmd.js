@@ -15,12 +15,10 @@ module.exports = function (gruntOrShipit) {
     var shipit = utils.getShipit(gruntOrShipit);
 
     function cmd(remote) {
-      shipit.log("Remote = "+remote);
 
       var method = remote ? 'remote' : 'local';
       var cdPath = remote ? shipit.releasePath || shipit.currentPath : shipit.config.workspace;
 
-      shipit.log(cdPath);
       if(!cdPath) {
         var msg = remote ? 'Please specify a deploy to path (shipit.config.deployTo).' : 'Please specify a workspace (shipit.config.workspace)';
         throw new Error(

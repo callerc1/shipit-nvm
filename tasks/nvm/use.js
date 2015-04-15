@@ -29,8 +29,7 @@ module.exports = function (gruntOrShipit) {
          sprintf('cat %s.nvmrc', nvmrcPath)
       )
       .then(function (res) {
-        //shipit.log(res.stdout);
-        //shipit.log(res[0].stdout);
+
         v = remote ? res[0].stdout : res.stdout;
 
         return shipit[method](
@@ -39,7 +38,6 @@ module.exports = function (gruntOrShipit) {
       });
 
     }
-    shipit.log('running nvm use');
 
     if(shipit.nvm_inited) {
 

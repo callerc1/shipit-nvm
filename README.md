@@ -5,6 +5,7 @@ A set of tasks for [Shipit](https://github.com/shipitjs/shipit) used for [nvm](h
 **Features:**
 
 - Automatically sets/unsets a default version of node to use pre and post `npm install` respectively
+- Works with [shipit-deploy](https://github.com/shipitjs/shipit-deploy), [shipit-npm](https://github.com/callerc1/shipit-npm) and [shipit-shared](https://github.com/timkelty/shipit-shared)
 - Gets node version from `.nvmrc`
 - Sets default node version (`nvm alias default`) triggered on the `npm_preinstall` event from [shipit-npm](https://github.com/callerc1/shipit-npm)
 - Unalias/Cleans up default node version (`nvm unalias default`) triggered on the `npm_installed` event from [shipit-npm](https://github.com/callerc1/shipit-npm)
@@ -42,7 +43,7 @@ Or you can run the tasks separately :
 Type: `Boolean`
 Default: `true`
 
-A Boolean to determine whether to run the task in local workspace or on the remote.
+A Boolean to determine whether to run the task in local workspace or on the remote. **NOTE:** if used with [shipit-npm](https://github.com/callerc1/shipit-npm) the *npm.remote* option takes precedence over this one.
 
 ### `nvm.sh`
 

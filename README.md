@@ -15,7 +15,7 @@ A set of tasks for [Shipit](https://github.com/shipitjs/shipit) used for [nvm](h
 ## Install
 
 ```
-nvm install shipit-nvm
+npm install shipit-nvm
 ```
 
 ## Usage

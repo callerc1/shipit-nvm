@@ -7,7 +7,7 @@ A set of tasks for [Shipit](https://github.com/shipitjs/shipit) used for [nvm](h
 - Automatically sets/unsets a default version of node to use pre and post `npm install` respectively
 - Works with [shipit-deploy](https://github.com/shipitjs/shipit-deploy), [shipit-npm](https://github.com/callerc1/shipit-npm) and [shipit-shared](https://github.com/timkelty/shipit-shared)
 - Gets node version from `.nvmrc`
-- Sets default node version (`nvm alias default`) triggered on the `npm_preinstall` event from [shipit-npm](https://github.com/callerc1/shipit-npm)
+- Sets default node version (`nvm alias default`) triggered on `nvm_inited`
 - Unalias/Cleans up default node version (`nvm unalias default`) triggered on the `npm_installed` event from [shipit-npm](https://github.com/callerc1/shipit-npm)
 - Has a direct pass though task to [nvm](https://github.com/creationix/nvm) commands.
 - Works via [shipit-cli](https://github.com/shipitjs/shipit) and [grunt-shipit](https://github.com/shipitjs/grunt-shipit)

@@ -43,7 +43,7 @@ module.exports = function (gruntOrShipit) {
 
       return aliasDefault(shipit.config.nvm.remote)
       .then(function () {
-        shipit.emit('npm_pre_install_complete')
+        shipit.emit('nvm_alias_complete')
       })
       .then(function () {
         shipit.log(chalk.green('nvm alias default complete'));

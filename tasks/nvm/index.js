@@ -26,9 +26,7 @@ module.exports = function (gruntOrShipit) {
 
       shipit.on('nvm_inited', function () {
 
-        shipit.on('npm_preinstall', function () {
-          utils.runTask(gruntOrShipit, 'nvm:alias-default');
-        });
+        utils.runTask(gruntOrShipit, 'nvm:alias-default');
 
         shipit.on('npm_installed', function () {
           utils.runTask(gruntOrShipit, 'nvm:unalias-default');

@@ -1,6 +1,6 @@
 {
   "name": "shipit-nvm",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Nvm tasks for shipit.",
   "main": "index.js",
   "scripts": {

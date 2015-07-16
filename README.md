@@ -4,11 +4,10 @@ A set of tasks for [Shipit](https://github.com/shipitjs/shipit) used for [nvm](h
 
 **Features:**
 
-- Automatically sets/unsets a default version of node to use pre and post `npm install` respectively
+- Automatically sets a default node version. (`nvm alias default` triggered on `updated`,`fetched` or a custom event. *See options below.*)
 - Works with [shipit-deploy](https://github.com/shipitjs/shipit-deploy), [shipit-npm](https://github.com/callerc1/shipit-npm) and [shipit-shared](https://github.com/timkelty/shipit-shared)
 - Gets node version from `.nvmrc`
-- Sets default node version (`nvm alias default`) triggered on `deploy`
-- Unalias/Cleans up default node version (`nvm unalias default`) triggered on the `npm_installed` event from [shipit-npm](https://github.com/callerc1/shipit-npm)
+- Can Unalias/Clean up default node version. (`nvm unalias default` triggered on custom event. *See options below.*)
 - Has a direct pass though task to [nvm](https://github.com/creationix/nvm) commands.
 - Works via [shipit-cli](https://github.com/shipitjs/shipit) and [grunt-shipit](https://github.com/shipitjs/grunt-shipit)
 
@@ -52,6 +51,20 @@ Default: *`'/usr/local/nvm/nvm.sh'`*
 
 An string specifying the absolute path to the **nvm.sh** file (see [nvm readme](https://github.com/creationix/nvm/blob/master/README.markdown) for more info).
 
+### `npm.triggerEvents`
+#### `npm.triggerEvents.aliasDefault`
+
+Type: `String`,`Boolean`
+Default: `updated` or `fetched` (depending on `nvm.remote` value)
+
+An event name that triggers `nvm:alias-default`. Can be set to false to prevent the `nvm:alias-default` task from being fired.
+
+#### `npm.triggerEvents.unaliasDefault`
+
+Type: `String`,`Boolean`
+Default: `false`
+
+An event name that triggers `nvm:unalias-default`.
 
 ### Example `shipitfile.js` options usage
 
@@ -64,7 +77,10 @@ module.exports = function (shipit) {
     default: {
       nvm: {
         remote: false,
-        sh: '~/.nvm/nvm.sh'
+        sh: '~/.nvm/nvm.sh',
+        triggerEvents: {
+          unaliasDefault: 'npm_installed'
+        }
       }
     }
   });

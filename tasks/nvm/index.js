@@ -22,15 +22,21 @@ module.exports = function (gruntOrShipit) {
 
     shipit.on('npm_inited', function () {
 
-      utils.runTask(gruntOrShipit, 'nvm:init')
+      shipit.start('nvm:init');
 
       shipit.on('nvm_inited', function () {
 
-        utils.runTask(gruntOrShipit, 'nvm:alias-default');
+        if (shipit.config.nvm.triggerEvents.aliasDefault) {
+          shipit.on(shipit.config.nvm.triggerEvents.aliasDefault, function(){
+            shipit.start('nvm:alias-default');
+          });
+        }
 
-        shipit.on('npm_installed', function () {
-          utils.runTask(gruntOrShipit, 'nvm:unalias-default');
-        });
+        if (shipit.config.nvm.triggerEvents.unaliasDefault) {
+          shipit.on(shipit.config.nvm.triggerEvents.unaliasDefault, function () {
+            shipit.start('nvm:unalias-default');
+          });
+        }
 
       });
     });

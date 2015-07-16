@@ -22,6 +22,13 @@ module.exports = function (gruntOrShipit) {
     shipit.config.nvm.sh = shipit.config.nvm.sh || '/usr/local/nvm/nvm.sh';
     shipit.sharedPath = shipit.sharedPath || 'shared';
 
+    shipit.config.triggerEvents = shipit.config.triggerEvents || {};
+
+    var defaultTrigger = shipit.config.nvm.remote ? 'updated' : 'fetched';
+    shipit.config.nvm.triggerEvents.aliasDefault = shipit.config.nvm.triggerEvents.aliasDefault !== undefined ? shipit.config.nvm.triggerEvents.aliasDefault : defaultTrigger;
+
+    shipit.config.nvm.triggerEvents.unaliasDefault = shipit.config.nvm.triggerEvents.unaliasDefault !== undefined ? shipit.config.nvm.triggerEvents.unaliasDefault : false;
+
     // Allow for an absolute path
     if (!pathIsAbsolute(shipit.sharedPath)) {
       shipit.sharedPath = path.join(shipit.config.deployTo, shipit.sharedPath);

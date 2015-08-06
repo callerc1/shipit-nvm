@@ -22,7 +22,7 @@ module.exports = function (gruntOrShipit) {
     shipit.config.nvm.sh = shipit.config.nvm.sh || '/usr/local/nvm/nvm.sh';
     shipit.sharedPath = shipit.sharedPath || 'shared';
 
-    shipit.config.triggerEvents = shipit.config.triggerEvents || {};
+    shipit.config.nvm.triggerEvents = shipit.config.nvm.triggerEvents || {};
 
     var defaultTrigger = shipit.config.nvm.remote ? 'updated' : 'fetched';
     shipit.config.nvm.triggerEvents.aliasDefault = shipit.config.nvm.triggerEvents.aliasDefault !== undefined ? shipit.config.nvm.triggerEvents.aliasDefault : defaultTrigger;

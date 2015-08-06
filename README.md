@@ -51,15 +51,15 @@ Default: *`'/usr/local/nvm/nvm.sh'`*
 
 An string specifying the absolute path to the **nvm.sh** file (see [nvm readme](https://github.com/creationix/nvm/blob/master/README.markdown) for more info).
 
-### `npm.triggerEvents`
-#### `npm.triggerEvents.aliasDefault`
+### `nvm.triggerEvents`
+#### `nvm.triggerEvents.aliasDefault`
 
 Type: `String`,`Boolean`
 Default: `updated` or `fetched` (depending on `nvm.remote` value)
 
 An event name that triggers `nvm:alias-default`. Can be set to false to prevent the `nvm:alias-default` task from being fired.
 
-#### `npm.triggerEvents.unaliasDefault`
+#### `nvm.triggerEvents.unaliasDefault`
 
 Type: `String`,`Boolean`
 Default: `false`
